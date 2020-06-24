@@ -4,7 +4,7 @@
 	  		<section class="form_contianer">
 			     <div class='titleArea rflex'>
 					<img class="logo" :src="logo" alt="小爱admin">
-					<span class='title'>小爱<i>Admin</i></span>
+					<span class='title'>CES<i>Project</i></span>
 				</div>
 		    	<el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginForm">
 						<el-form-item prop="username" class="login-item">
@@ -12,7 +12,7 @@
 							<el-input @keyup.enter.native ="submitForm('loginForm')"  class="area" type="text" placeholder="用户名" v-model="loginForm.username" ></el-input>
 						</el-form-item>
 						<el-form-item prop="password" class="login-item"> 
-								<span class="loginTips"><icon-svg icon-class="iconLock" /></span>
+								<span class="loginTips"><icon-svg icon-class="iconlock" /></span>
 							<el-input @keyup.enter.native ="submitForm('loginForm')" class="area" type="password" placeholder="密码" v-model="loginForm.password"></el-input>
 						</el-form-item>
 						<el-form-item>
@@ -45,7 +45,7 @@
 
 <script>
 	import logoImg from "@/assets/img/logo.png";
-	// import { login } from "@/api/user";
+	import { login } from "@/api/user";
   import { setToken } from '@/utils/auth'
 
 	export default {
@@ -58,8 +58,8 @@
 				},
 				rules: {
 					username: [
-			            { required: true, message: '请输入用户名', trigger: 'blur' },
-						{ min: 2, max: 8, message: '长度在 2 到 8 个字符', trigger: 'blur' }
+			          { required: true, message: '请输入用户名', trigger: 'blur' },
+								{ min: 2, max: 8, message: '长度在 2 到 8 个字符', trigger: 'blur' }
 			        ],
 					password: [
 						{ required: true, message: '请输入密码', trigger: 'blur' }
@@ -79,18 +79,19 @@
 				});
 			},
 			submitForm(loginForm) {
-				// this.$refs[loginForm].validate((valid) => {
-				// 	if (valid) {
-				// 		let userinfo = this.loginForm;
-				// 		login(userinfo).then(res => {
-				// 			let userList = res.data.userList;
-				// 			setToken("Token",userList.token)
-				// 			this.$router.push({ path: '/' })
-				// 			this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
-				// 			//调用this.store.dispath('Login,this.loginForm)来调取store里的user.js的login方法，从而要更新
-				// 		})
-				// 	}
-				// });
+				console.log('登錄')
+				this.$refs[loginForm].validate((valid) => {
+					if (valid) {
+						let userinfo = this.loginForm;
+						login(userinfo).then(res => {
+							let userList = res.data.userList;
+							setToken("Token",userList.token)
+							// this.$router.push({ path: '/' })
+							// this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
+							//调用this.store.dispath('Login,this.loginForm)来调取store里的user.js的login方法，从而要更新
+						})
+					}
+				});
 			}
 		}
 	}
