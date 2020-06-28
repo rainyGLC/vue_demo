@@ -4,7 +4,7 @@
 	  		<section class="form_contianer">
 			     <div class='titleArea rflex'>
 					<img class="logo" :src="logo" alt="小爱admin">
-					<span class='title'>小爱<i>Admin</i></span>
+					<span class='title'>CES<i>Project</i></span>
 				</div>
 		    	<el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginForm">
 						<el-form-item prop="username" class="login-item">
