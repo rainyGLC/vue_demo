@@ -14,7 +14,7 @@ for (let i = 0; i < count; i++) {
     address: Mock.mock('@county(true)'),
     createTime: Mock.Random.datetime(),
     updateTime: Mock.Random.now(),
-    ip:Mock.mock('@ip'),
+    ip:Mock.mock('@ip'), 
     region:Mock.mock('@region'),
     areaId:/\d{7}/,
     email: Mock.Random.email(),
