@@ -20,7 +20,7 @@ export function logout (params) {
 
 export function getUserInfo(params) {
 	return request({
-		url:"user/info/get",
+		url:"/user/info/get", 
 		method:'get',
 		data:params
 	})

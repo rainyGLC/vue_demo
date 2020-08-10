@@ -4,38 +4,38 @@
 	  		<section class="form_contianer">
 			     <div class='titleArea rflex'>
 					<img class="logo" :src="logo" alt="小爱admin">
-					<span class='title'>CES<i>Project</i></span>
+					<span class='title'>小爱<i>Admin</i></span>
 				</div>
 		    	<el-form :model="loginForm" :rules="rules" ref="loginForm" class="loginForm">
-						<el-form-item prop="username" class="login-item">
-								<span class="loginTips"><icon-svg icon-class="iconuser" /></span>
-							<el-input @keyup.enter.native ="submitForm('loginForm')"  class="area" type="text" placeholder="用户名" v-model="loginForm.username" ></el-input>
-						</el-form-item>
-						<el-form-item prop="password" class="login-item"> 
-								<span class="loginTips"><icon-svg icon-class="iconlock" /></span>
-							<el-input @keyup.enter.native ="submitForm('loginForm')" class="area" type="password" placeholder="密码" v-model="loginForm.password"></el-input>
-						</el-form-item>
-						<el-form-item>
-								<el-button type="primary"  @click="submitForm('loginForm')" class="submit_btn">SIGN IN</el-button>
-							</el-form-item>
-						<div class="tiparea">
-							<p class="wxtip">温馨提示：</p>
-							<p class="tip">用户名为：admin/editor<span>(可用于切换权限)</span></p>
-							<p class="tip">密码为：123456</p>
-						</div>
-						<div class="sanFangArea">
-							<p class="title">第三方账号登录</p>
-							<ul class="rflex">
-								<li @click="loginByWechat">
-										<icon-svg icon-class="iconwechat" />
-								</li>
-								<li>
-										<icon-svg icon-class="iconweibo" />
-								</li>
-								<li>
-										<icon-svg icon-class="iconGithub" />
-								</li>
-							</ul>
+					<el-form-item prop="username" class="login-item">
+					    <span class="loginTips"><icon-svg icon-class="iconuser" /></span>
+						<el-input @keyup.enter.native ="submitForm('loginForm')"  class="area" type="text" placeholder="用户名" v-model="loginForm.username" ></el-input>
+					</el-form-item>
+					<el-form-item prop="password" class="login-item"> 
+					    <span class="loginTips"><icon-svg icon-class="iconLock" /></span>
+						<el-input @keyup.enter.native ="submitForm('loginForm')" class="area" type="password" placeholder="密码" v-model="loginForm.password"></el-input>
+					</el-form-item>
+					<el-form-item>
+				    	<el-button type="primary"  @click="submitForm('loginForm')" class="submit_btn">SIGN IN</el-button>
+				  	</el-form-item>
+					<div class="tiparea">
+						<p class="wxtip">温馨提示：</p>
+						<p class="tip">用户名为：admin/editor<span>(可用于切换权限)</span></p>
+						<p class="tip">密码为：123456</p>
+					</div>
+					<div class="sanFangArea">
+						<p class="title">第三方账号登录</p>
+						<ul class="rflex">
+							<li @click="loginByWechat">
+						       <icon-svg icon-class="iconwechat" />
+							</li>
+							<li>
+							    <icon-svg icon-class="iconweibo" />
+							</li>
+							<li>
+							    <icon-svg icon-class="iconGithub" />
+							</li>
+						</ul>
 				    </div>
 				</el-form>
 	  		</section>
@@ -45,7 +45,7 @@
 
 <script>
 	import logoImg from "@/assets/img/logo.png";
-	import { login } from "@/api/user";
+	import { login} from "@/api/user";
   import { setToken } from '@/utils/auth'
 
 	export default {
@@ -58,8 +58,8 @@
 				},
 				rules: {
 					username: [
-			          { required: true, message: '请输入用户名', trigger: 'blur' },
-								{ min: 2, max: 8, message: '长度在 2 到 8 个字符', trigger: 'blur' }
+			            { required: true, message: '请输入用户名', trigger: 'blur' },
+						{ min: 2, max: 8, message: '长度在 2 到 8 个字符', trigger: 'blur' }
 			        ],
 					password: [
 						{ required: true, message: '请输入密码', trigger: 'blur' }
@@ -78,17 +78,19 @@
 						message: message
 				});
 			},
-			submitForm(loginForm) {
-				console.log('登錄')
+		  submitForm(loginForm) {
 				this.$refs[loginForm].validate((valid) => {
 					if (valid) {
 						let userinfo = this.loginForm;
 						login(userinfo).then(res => {
 							let userList = res.data.userList;
 							setToken("Token",userList.token)
-							// this.$router.push({ path: '/' })
-							// this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
-							//调用this.store.dispath('Login,this.loginForm)来调取store里的user.js的login方法，从而要更新
+							this.$router.push({ path: '/' })
+							// console.log(userList.token,'token是什麼')
+							// getUserInfo({"token":userList.token}).then().then(res=>{
+							// 	console.log(res.data,'用戶信息');
+							// })
+							this.$store.dispatch('initLeftMenu'); //设置左边菜单始终为展开状态
 						})
 					}
 				});

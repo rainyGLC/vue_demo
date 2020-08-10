@@ -20,15 +20,11 @@ const user  = {
     browserHeaderTitle: state => state.browserHeaderTitle,
   },
   mutations: {
-		// increment(state) {
-    //   state.count++;
-		// }
-		
     SET_ROLES: (state, roles) => {
-      state.roles = roles
+        state.roles = roles
     },
     SET_BROWSERHEADERTITLE: (state, action) => {
-      state.browserHeaderTitle = action.browserHeaderTitle
+        state.browserHeaderTitle = action.browserHeaderTitle
     },
     SET_NAME: (state, name) => {
       state.name = name
@@ -61,7 +57,7 @@ const user  = {
             resolve()
           })
         })
-      },
+      },  
   }
 }
 

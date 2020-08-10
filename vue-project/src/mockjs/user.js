@@ -94,16 +94,16 @@ export default {
    * @param name, page, limit
    * @return {{code: number, count: number, data: *[]}}
    */
-  getUserList:config => {
-    const { limit , page } = JSON.parse(config.body);
-    let mockList = List;
-    const userList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
-    return {
-      code: 200,
-      data: {
-        total: mockList.length,
-        userList: userList
-      }
-    }
-  }
+  // getUserList:config => {
+  //   const { limit , page } = JSON.parse(config.body);
+  //   let mockList = List;
+  //   const userList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+  //   return {
+  //     code: 200,
+  //     data: {
+  //       total: mockList.length,
+  //       userList: userList
+  //     }
+  //   }
+  // }
 }
